@@ -1,14 +1,12 @@
-import { Component } from 'react';
-import TodoHome from './component/TodoHome'
-import TodoEdit from './component/TodoList'
-
-import './App.css';
-
+import React, { Component } from 'react';
+import TodoHome from './component/HomePage/TodoHome'
+import TodoEdit from './component/EditPage/TodoEdit'
+import { Route } from 'react-router-dom'
 
 class App extends Component{
   render(){
     return(
-      <div className="container">
+      <div>
         <Route exact path="/" render={()=> (
           <TodoHome/>
         )}/>
@@ -20,3 +18,4 @@ class App extends Component{
   }
 }
 
+export default App

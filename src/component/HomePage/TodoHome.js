@@ -1,14 +1,14 @@
-import {Component} from 'react';
-import TodoHome from './TodoList'
+import React, { Component } from 'react';
+import TodoList from './TodoList'
 
 const Todo = [
-    { nombre: "Hacer Super" },
-    { nombre: "Estudiar React" },
-    { nombre: "Hacer deporte" },
-    { nombre: "Sacar a pasear al perro" }]
+    { name: "Hacer Super" },
+    { name: "Estudiar React" },
+    { name: "Hacer deporte" },
+    { name: "Sacar a pasear al perro" }]
   
   
-  class TodoHome extends React.Component {
+  class TodoHome extends Component {
       state = {
         value: "",
         list: []
@@ -28,7 +28,7 @@ const Todo = [
     
       onAddTask = () => {
         this.setState((state) => ({
-          list: state.list.concat({ nombre : this.state.value})
+          list: state.list.concat({ name : this.state.value})
         }))
     
         this.setState({
@@ -38,21 +38,22 @@ const Todo = [
     
       onRemoveTask = (task) => {
         this.setState((state) => ({
-          list: state.list.filter((t) => t.nombre !== task)
+          list: state.list.filter((t) => t.name !== task)
         }))
       }
   
       render() {
         return (
-          <div>
-            <div>
-              <label>Todo List</label>
+          <div className="container">
+            <div className="input-group">
               <input value={this.state.value}
                 onChange={(event) => this.onChangeValue(event.target.value)}
-                type="text" />
-              <button onClick={this.onAddTask}>Guardar</button>
+                type="text" className="form-control" placeholder="New Task" />
+              <span className="input-group-btn">
+                <button onClick={this.onAddTask} className="btn btn-primary">Guardar</button>
+              </span>
             </div>
-            <Tareas tasks={this.state.list} removeTask={this.onRemoveTask} />
+            <TodoList tasks={this.state.list} removeTask={this.onRemoveTask} />
           </div>
         )
       }

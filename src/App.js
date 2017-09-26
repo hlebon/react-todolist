@@ -1,21 +1,65 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import Tareas from './TodoList'
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const listaDeTareas = [
+  { nombre: "Hacer Super" },
+  { nombre: "Estudiar React" },
+  { nombre: "Hacer deporte" },
+  { nombre: "Sacar a pasear al perro" }]
 
-export default App;
+
+class TareasContainer extends React.Component {
+    state = {
+      value: "",
+      list: []
+    }
+
+    componentDidMount(){
+      this.setState({
+        list: listaDeTareas
+      })
+    }
+  
+    onChangeValue = (value) => {
+      this.setState({
+        value: value
+      })
+    }
+  
+    onAddTask = () => {
+      this.setState((state) => ({
+        list: state.list.concat({ nombre :this.state.value})
+      }))
+  
+      this.setState({
+        value: ""
+      })
+    }
+  
+    onRemoveTask = (task) => {
+      this.setState((state) => ({
+        list: state.list.filter((t) => t.nombre !== task)
+      }))
+    }
+
+    render() {
+
+      console.log(this.state.list);
+
+      return (
+        <div>
+          <div>
+            <label>Tarea</label>
+            <input value={this.state.value}
+              onChange={(event) => this.onChangeValue(event.target.value)}
+              type="text" />
+            <button onClick={this.onAddTask}>Guardar</button>
+          </div>
+          <Tareas tareas={this.state.list} removeTask={this.onRemoveTask} />
+        </div>
+      )
+    }
+  }
+
+export default TareasContainer;

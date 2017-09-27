@@ -3,3 +3,17 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.container{
+  width: 40%;
+  margin-top: 55px;
+}
+
+.list-group{
+  margin-top: 25px;
+}
+
+
+.create{
+  margin-top: 15px;
+}

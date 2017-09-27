@@ -3,14 +3,14 @@ import React from 'react';
 function TodoList(props) {
     console.log(props)
     return (
-      <ul className="list-group">{props.tasks.map((task, index) => (
-        <li key={index} className="list-group-item">
-          <span>{task.name}</span>
-          <a onClick={() => props.removeTask(task.name)}
-            className="float-right">&times;</a>
-        </li>
+      <div className="list-group">{props.list.map((item, index) => (
+        <a key={index} className="list-group-item list-group-item-action">
+          <span>{item.name}</span>
+          <button onClick={() => props.removeTask(item.name)}
+            className="btn btn-primary rounded-circle float-right">&times;</button>
+        </a>
       ))}
-      </ul>)
+      </div>)
     }
 
 export default TodoList

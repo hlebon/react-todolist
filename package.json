@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
     "react": "^15.6.2",
+    "escape-string-regexp": "^1.0.5",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-transition-group": "^15.6.2",
     "react-dom": "^15.6.2",

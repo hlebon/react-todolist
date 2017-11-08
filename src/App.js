@@ -6,10 +6,26 @@ import { Route } from 'react-router-dom'
 
 
 const Todo = [
-  { name: "Hacer Super" },
-  { name: "Estudiar React" },
-  { name: "Hacer deporte" },
-  { name: "Sacar a pasear al perro" }]
+  {
+    title: "Hacer Super",
+    description: "Comprar para el desayuno de mañana y el almuerzo",
+    author: "Hans",
+    creationDate: "14/11/2017"
+  },
+  {
+    title: "Pintar la casa",
+    description: "LLamar para preguntar a que hora puedo pasar por la pintura",
+    author: "Daniel",
+    creationDate: "25/10/2017"
+  },
+  {
+    title: "Estudiar para examen",
+    description: "Estudiar los ultimos dos capitulos PMBOOK",
+    author: "Claudia",
+    creationDate: "8/11/2017"
+  }
+]
+
 
 
 class App extends Component{

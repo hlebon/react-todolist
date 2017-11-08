@@ -1,15 +1,21 @@
 import React from 'react';
 
 function TodoList(props) {
-    console.log(props)
     return (
-      <div className="list-group">{props.list.map((item, index) => (
-        <a key={index} className="list-group-item list-group-item-action">
-          <span>{item.name}</span>
-          <button onClick={() => props.removeTask(item.name)}
-            className="btn btn-primary rounded-circle float-right">&times;</button>
-        </a>
-      ))}
+      <div>
+        <ul className="list-group">
+          {props.list.map((item, index) => (
+            <li key={index} className="list-group-item list-group-item-action">
+              <div>
+                <div>
+                  <h5>{item.author}</h5>
+                  <small className="text-muted float-right">{item.creationDate}</small>
+                </div>
+                <p>{item.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>)
     }
 

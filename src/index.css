@@ -5,9 +5,86 @@ body {
 }
 
 .container{
-  width: 40%;
+  max-width: 40%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 55px;
+  border: 1px solid gray;
 }
+
+.cflex-column{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.input-group{
+  width: 100%;
+  background: cadetblue;
+  height: auto;
+}
+
+.form-control{
+  width: calc( 100% - 22px );
+  height: 45px;
+}
+
+input[type=text]{
+  padding: 0 0.5em;
+  font-size: 18px;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.item-list {
+
+  position: relative;
+  padding: 4px 0;
+  background: #eee;
+  font-size: 18px;
+  height: 65px;
+  transition: 0.2s;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.item-list:hover {
+  background: #ddd;
+}
+
+.cflex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  position: relative;
+}
+
+.center-item{
+  line-height: 65px;
+  text-align: center;
+}
+
+.cfw-author{
+  width: 20%;
+  height: inherit;
+}
+
+.cfw-content{
+  width: 80%;
+}
+
+.cfw-options{
+  display: none;
+}
+
 
 .list-group{
   margin-top: 25px;

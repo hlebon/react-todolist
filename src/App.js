@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TodoHome from './component/HomePage/TodoHome'
+import TodoList from './component/HomePage/TodoList'
 import TodoEdit from './component/EditPage/TodoEdit'
 import AddTask from './component/AddPage/AddTask'
 import { Route } from 'react-router-dom'
@@ -10,19 +10,22 @@ const Todo = [
     title: "Hacer Super",
     description: "Comprar para el desayuno de mañana y el almuerzo",
     author: "Hans",
-    creationDate: "14/11/2017"
+    creationDate: "14/11/2017",
+    complete: false
   },
   {
     title: "Pintar la casa",
     description: "LLamar para preguntar a que hora puedo pasar por la pintura",
     author: "Daniel",
-    creationDate: "25/10/2017"
+    creationDate: "25/10/2017",
+    complete: true
   },
   {
     title: "Estudiar para examen",
     description: "Estudiar los ultimos dos capitulos PMBOOK",
     author: "Claudia",
-    creationDate: "8/11/2017"
+    creationDate: "8/11/2017",
+    complete: false
   }
 ]
 
@@ -57,9 +60,9 @@ class App extends Component{
 
   render(){
     return(
-      <div>
+      <div className="container">
         <Route exact path="/" render={()=> (
-          <TodoHome list={this.state.list} onRemoveTask={this.onRemoveTask}/>
+          <TodoList list={this.state.list} onRemoveTask={this.onRemoveTask}/>
         )}/>
         <Route path="/edit" render={()=> (
           <TodoEdit/>

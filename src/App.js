@@ -7,6 +7,7 @@ import { Route } from 'react-router-dom'
 
 const Todo = [
   {
+    id: 1,
     title: "Hacer Super",
     description: "Comprar para el desayuno de mañana y el almuerzo",
     author: "Hans",
@@ -14,6 +15,7 @@ const Todo = [
     complete: false
   },
   {
+    id: 2,
     title: "Pintar la casa",
     description: "LLamar para preguntar a que hora puedo pasar por la pintura",
     author: "Daniel",
@@ -21,6 +23,7 @@ const Todo = [
     complete: true
   },
   {
+    id: 3,
     title: "Estudiar para examen",
     description: "Estudiar los ultimos dos capitulos PMBOOK",
     author: "Claudia",
@@ -53,8 +56,9 @@ class App extends Component{
   }
 
   onRemoveTask = (task) => {
+    console.log(task)
     this.setState((state) => ({
-      list: state.list.filter((t) => t.name !== task)
+      list: state.list.filter((t) => t.id !== task)
     }))
   }
 

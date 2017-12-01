@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import escapeRegExp from 'escape-string-regexp'
 import PropTypes from 'prop-types'
+import MdAdd from 'react-icons/lib/md/add'
+import MdSearch from 'react-icons/lib/md/search'
+import MdDelete from 'react-icons/lib/md/delete'
 
 function Item(props){
   return (
@@ -14,14 +16,17 @@ function Item(props){
         <small>{props.item.creationDate}</small>
       </div>
       <div className="cfw-options center-item">
-        <div>https://dribbble.com/shots/3246783-Reminder-UI</div>
+        <span onClick={() => props.removeTask(props.item.id)}>
+          <MdDelete/>
+        </span>
       </div>
   </div>
   )
 }
 
 Item.propTypes = {
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
+  removeTask: PropTypes.func.isRequired
 }
 
 function ItemList(props) {
@@ -29,8 +34,8 @@ function ItemList(props) {
     <div>
       <ul className="list">
         {props.list.map((item, index) => (
-          <li className="item-list" key={index}>
-            <Item item={item}/>
+          <li className="item-list" key={item.id}>
+            <Item item={item} removeTask={props.removeTask}/>
           </li>
         ))}
       </ul>
@@ -38,7 +43,8 @@ function ItemList(props) {
 }
 
 ItemList.propTypes = {
-  list: PropTypes.array.isRequired
+  list: PropTypes.array.isRequired,
+  removeTask: PropTypes.func.isRequired
 }
 
 class TodoList extends Component {
@@ -67,13 +73,22 @@ class TodoList extends Component {
 
         return (
           <div className="cflex-column">
+            <div className="head cflex-wrap">
+              
+              <div className="title">
+                Tareas
+              </div>
+              <div className="img">
+                <MdAdd/>
+                <MdSearch/>
+              </div>
+            </div>
             <div className="input-group">
               <input value={this.state.value}
                 onChange={this.onChangeValue}
                 type="text" placeholder="New Task" className="form-control" />
             </div>
             <ItemList list={showList} removeTask={onRemoveTask} />
-            <Link to="/add">Add</Link>
           </div>
         )
       }

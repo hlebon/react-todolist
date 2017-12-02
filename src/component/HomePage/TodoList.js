@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import MdAdd from 'react-icons/lib/md/add'
 import MdSearch from 'react-icons/lib/md/search'
 import MdDelete from 'react-icons/lib/md/delete'
+import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up'
 
 function Item(props){
   return (
@@ -51,6 +52,7 @@ ItemList.propTypes = {
 class TodoList extends Component {
     state = {
       value: "",
+      onSearch: false
     }
       
     onChangeValue = (event) => {
@@ -63,10 +65,18 @@ class TodoList extends Component {
     onCreateTaks = () => {
       alert("Hola desde onCreate Task")
     }
+
+    showInputSearch = () => {
+      this.setState({
+        onSearch: true
+      })
+    }
+
+    hideInputSearch = () => this.setState({ onSearch: false })
   
     render() {
         const { list, onRemoveTask } = this.props;
-        const { value } = this.state;
+        const { value, onSearch } = this.state;
 
         let showList
         if(value){
@@ -79,7 +89,6 @@ class TodoList extends Component {
         return (
           <div className="cflex-column">
             <div className="head cflex-wrap">
-              
               <div className="title">
                 Tareas
               </div>
@@ -87,14 +96,20 @@ class TodoList extends Component {
                 <Link to="/add">
                   <MdAdd/>
                 </Link>
-                <MdSearch />
+                { onSearch 
+                  ? <MdKeyboardArrowUp onClick={this.hideInputSearch}/>
+                  : <MdSearch onClick={this.showInputSearch}/>
+                }
+                
               </div>
             </div>
-            <div className="input-group">
-              <input value={this.state.value}
-                onChange={this.onChangeValue}
-                type="text" placeholder="New Task" className="form-control" />
-            </div>
+            {this.state.onSearch && 
+              <div className="input-group">
+                <input value={this.state.value}
+                  onChange={this.onChangeValue}
+                  type="text" placeholder="Search..." className="form-control" />
+              </div>
+            }
             <ItemList list={showList} removeTask={onRemoveTask} />
           </div>
         )

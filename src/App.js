@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TodoList from './component/HomePage/TodoList'
-import TodoEdit from './component/EditPage/TodoEdit'
 import AddTask from './component/AddPage/AddTask'
 import { Route } from 'react-router-dom'
 

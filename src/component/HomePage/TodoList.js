@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import escapeRegExp from 'escape-string-regexp'
 import PropTypes from 'prop-types'
 import MdAdd from 'react-icons/lib/md/add'
@@ -58,6 +59,10 @@ class TodoList extends Component {
           value: query.trim()
         })
     }
+
+    onCreateTaks = () => {
+      alert("Hola desde onCreate Task")
+    }
   
     render() {
         const { list, onRemoveTask } = this.props;
@@ -70,7 +75,7 @@ class TodoList extends Component {
         }else{
           showList = list
         }
-
+        
         return (
           <div className="cflex-column">
             <div className="head cflex-wrap">
@@ -79,8 +84,10 @@ class TodoList extends Component {
                 Tareas
               </div>
               <div className="img">
-                <MdAdd/>
-                <MdSearch/>
+                <Link to="/add">
+                  <MdAdd/>
+                </Link>
+                <MdSearch />
               </div>
             </div>
             <div className="input-group">

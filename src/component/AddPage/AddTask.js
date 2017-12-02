@@ -7,7 +7,8 @@ class AddTask extends React.Component{
     }
 
     handleAddTask = () => {
-        this.props.onAddTask({
+        console.log("New Task")
+        this.props.addTask({
             title: this.state.title,
             description: this.state.description
         })
@@ -15,17 +16,31 @@ class AddTask extends React.Component{
 
     render(){
         return(
-            <form onSubmit={this.handleAddTask} className="container">
-                <h1>Add Task</h1>
+            <form onSubmit={() => this.handleAddTask()} className="cflex-column">
+                <div className="form-group">
+                    <h1 className="title">Add Task</h1>
+                </div>
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
-                    <input value={this.state.title} onChange={(e) => this.setState({title: e.target.value})} id="title" className="form-control" />
+                    <input value={this.state.title} type="text"
+                        onChange={(e) => this.setState({title: e.target.value})} 
+                        id="title"
+                        className="form-control"
+                        placeholder="title" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
-                    <textarea value={this.state.descripcion}  onChange={(e) => this.setState({description: e.target.value})} id="description" className="form-control" />
+                    <textarea value={this.state.descripcion} 
+                        onChange={(e) => this.setState({description: e.target.value})} 
+                        id="description"
+                        className="form-control"
+                        placeholder="Description" />
                 </div>
-                <button className="btn btn-primary">Submit</button>
+                <div className="form-group">
+                    <button className="btn" type="submit">
+                        <span>Create</span>
+                    </button>
+                </div>
             </form>
         )
     }

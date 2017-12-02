@@ -45,18 +45,19 @@ class App extends Component{
     })
   }
 
-  onAddTask = (task) => {
+  handleAddTask = (task) => {
+    task["id"] = this.state.list.length + 1
+    task["complet"] = false
+    task["creationDate"] = (new Date()).toDateString()
+    task["author"] = "Hans"
+    console.log(task);
+    console.log(this.state.list)
     this.setState((state) => ({
-      list: state.list.concat({ name : task.title})
+      list: state.list.concat([task])
     }))
-
-    this.setState({
-      value: ""
-    })
   }
 
   onRemoveTask = (task) => {
-    console.log(task)
     this.setState((state) => ({
       list: state.list.filter((t) => t.id !== task)
     }))
@@ -68,12 +69,9 @@ class App extends Component{
         <Route exact path="/" render={()=> (
           <TodoList list={this.state.list} onRemoveTask={this.onRemoveTask}/>
         )}/>
-        <Route path="/edit" render={()=> (
-          <TodoEdit/>
-        )}/>
         <Route path="/add" render={({history})=> (
-          <AddTask onAddTask={(task) => {
-            this.onAddTask(task);
+          <AddTask addTask={(task) => {
+            this.handleAddTask(task);
             history.push("/");
           }}
           />

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class AddTask extends React.Component{
     state = {
@@ -37,6 +38,9 @@ class AddTask extends React.Component{
                         placeholder="Description" />
                 </div>
                 <div className="form-group">
+                    <Link to="/" className="btn btn-secondary">
+                        <span>Back</span>
+                    </Link>
                     <button className="btn" type="submit">
                         <span>Create</span>
                     </button>

@@ -230,3 +230,10 @@ textarea{
   min-height: 90px;
   resize: none;
 }
+
+.emptyList{
+  color:white;
+  text-align: center;
+  background: linear-gradient(160deg, #02CCBA 0%, #AA7ECD 100%);
+  transform-origin: left bottom;
+}

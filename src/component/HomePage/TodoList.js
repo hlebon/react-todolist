@@ -49,6 +49,15 @@ ItemList.propTypes = {
   removeTask: PropTypes.func.isRequired
 }
 
+function EmptyListMessage(props){
+  return (
+    <div className="emptyList">
+      <h2>No hay tareas agregadas</h2>
+    </div>
+  )
+}
+
+
 class TodoList extends Component {
     state = {
       value: "",
@@ -78,12 +87,12 @@ class TodoList extends Component {
         const { list, onRemoveTask } = this.props;
         const { value, onSearch } = this.state;
 
-        let showList
+        let newList
         if(value){
           const match = new RegExp(escapeRegExp(this.state.value), "i");
-          showList = list.filter((item) => match.test(item.title))
+          newList = list.filter((item) => match.test(item.title))
         }else{
-          showList = list
+          newList = list
         }
         
         return (
@@ -110,7 +119,10 @@ class TodoList extends Component {
                   type="text" placeholder="Search..." className="form-control" />
               </div>
             }
-            <ItemList list={showList} removeTask={onRemoveTask} />
+            {newList.length 
+            ? <ItemList list={newList} removeTask={onRemoveTask} />
+            : <EmptyListMessage/>}
+            
           </div>
         )
       }

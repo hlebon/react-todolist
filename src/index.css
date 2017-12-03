@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin|Faustina');
+
 * {
   box-sizing: border-box;
+  font-family: 'Faustina', serif;
 }
-
 
 body {
   min-height: 100%;
@@ -86,6 +88,10 @@ input[type=text], textarea{
   background: #4A148C;
 }
 
+.checked{
+  text-decoration: line-through;
+}
+
 .cflex-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -104,12 +110,12 @@ input[type=text], textarea{
 }
 
 .cfw-content{
-  width: 70%;
+  width: 60%;
 }
 
 .cfw-options{
   opacity: 0;
-  width: 10%;
+  width: 20%;
   transition: opacity 1s linear;
 }
 

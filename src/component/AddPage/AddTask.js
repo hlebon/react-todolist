@@ -7,8 +7,8 @@ class AddTask extends React.Component{
         description: ""
     }
 
-    handleAddTask = () => {
-        console.log("New Task")
+    handleAddTask = (e) => {
+        e.preventDefault();
         this.props.addTask({
             title: this.state.title,
             description: this.state.description

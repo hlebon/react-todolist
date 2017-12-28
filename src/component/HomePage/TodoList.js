@@ -100,7 +100,7 @@ class TodoList extends Component {
           <div className="cflex-column">
             <div className="head cflex-wrap">
               <div className="title">
-                Tareas
+                Task
               </div>
               <div className="img">
                 <Link to="/add">

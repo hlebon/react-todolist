@@ -17,7 +17,7 @@ class AddTask extends React.Component{
 
     render(){
         return(
-            <form onSubmit={() => this.handleAddTask()} className="cflex-column">
+            <form onSubmit={this.handleAddTask} className="cflex-column">
                 <div className="form-group">
                     <h1 className="title">Add Task</h1>
                 </div>

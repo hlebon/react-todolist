@@ -51,8 +51,9 @@ input[type=text], textarea{
 .item-list {
   position: relative;
   padding: 4px 0;
-  background: #FF4081;
-  color: white;
+  background: #f3f1f1;
+  color: rgb(30, 30, 70);
+  border-top: 0.5px solid rgb(209, 211, 209);
   font-size: 18px;
   height: 65px;
   transition: 0.2s;
@@ -65,27 +66,12 @@ input[type=text], textarea{
 }
 
 .item-list:hover{
-    background: #C51162;
+    background: rgb(228, 225, 226);
+    color: black;
 }
 
 .item-list:hover> .cflex-wrap > .cfw-options{
   opacity: 1;
-}
-
-.item-list:nth-child(2n) {
-  background: #3F51B5;
-}
-
-.item-list:nth-child(2n):hover {
-  background: #303F9F;
-}
-
-.item-list:nth-child(3n){
-  background: #8E24AA;
-}
-
-.item-list:nth-child(3n):hover{
-  background: #4A148C;
 }
 
 .checked{

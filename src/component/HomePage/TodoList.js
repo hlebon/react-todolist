@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import escapeRegExp from 'escape-string-regexp'
 import PropTypes from 'prop-types'
@@ -64,7 +64,6 @@ function EmptyListMessage(props){
     </div>
   )
 }
-
 
 class TodoList extends Component {
     state = {

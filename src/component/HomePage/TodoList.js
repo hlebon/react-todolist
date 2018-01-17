@@ -3,33 +3,95 @@ import { Link } from 'react-router-dom'
 import escapeRegExp from 'escape-string-regexp'
 import PropTypes from 'prop-types'
 import sortBy from 'sort-by'
+import Modal from 'react-modal'
 import MdAdd from 'react-icons/lib/md/add'
 import MdSearch from 'react-icons/lib/md/search'
 import MdDelete from 'react-icons/lib/md/delete'
 import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up'
 import MdCheckBox from 'react-icons/lib/md/check-box'
 import MdCheckBoxOutlineBlank from 'react-icons/lib/md/check-box-outline-blank'
+import MdFormatListBulleted from 'react-icons/lib/md/format-list-bulleted'
 
-function Item(props){
-  return (
-    <div className="cflex-wrap">
-      <div className="cfw-author center-item">
-          {props.item.title[0].toUpperCase()}
+const styles = {
+  modal: {
+    overlay: {
+      position: "fixed",
+      top: "0px",
+      left: "0px",
+      right: "0px",
+      bottom: "0px",
+      backgroundColor: "rgba(133, 130, 130, 0.753)"
+    },
+    content: {
+      position: "absolute",
+      top: "40px",
+      left: "200px",
+      right: "200px",
+      bottom: "40px",
+      border: "1px solid rgb(204, 204, 204)",
+      background: "rgb(255, 255, 255)",
+      overflow: "auto",
+      borderRadius: "4px",
+      outline: "none",
+      padding: "20px",
+      boxShadow: "0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.12)",
+      minWidth: "500px"
+    }
+  }
+}
+
+class Item extends Component{
+  state = {
+    isModalOpen : false,
+    itemInView: null
+  }
+
+  openModal = (item) => {
+    this.setState({
+      itemInView: item,
+      isModalOpen: true
+    })
+  }
+
+  closeModal = () => {
+    this.setState({
+      isModalOpen: false,
+      itemInView: null
+    })
+  }
+
+  render(){
+    return (
+      <div className="cflex-wrap">
+        <div className="cfw-author center-item">
+            {this.props.item.title[0].toUpperCase()}
+        </div>
+        <div className="cfw-content cflex-column">
+          <div className={this.props.item.completed ? "checked" : ""}>{this.props.item.title}</div>
+          <small>{this.props.item.creationDate}</small>
+        </div>
+        <Modal 
+          style={styles.modal}
+          isOpen={this.state.isModalOpen} 
+          onRequestClose={this.closeModal}
+          contentLabel='Modal'
+          >
+          Hola
+        </Modal>
+        <div className="cfw-options center-item">
+          <span onClick={() => this.openModal(this.props.item)}>
+            <MdFormatListBulleted/>
+          </span>
+          <span onClick={() => this.props.removeTask(this.props.item.id)}>
+            <MdDelete/>
+          </span>
+          <span onClick={() => this.props.completeTask(this.props.item)}>
+            {this.props.item.completed ? <MdCheckBox/> : <MdCheckBoxOutlineBlank/>}
+          </span>
+        </div>
       </div>
-      <div className="cfw-content cflex-column">
-        <div className={props.item.completed ? "checked" : ""}>{props.item.title}</div>
-        <small>{props.item.creationDate}</small>
-      </div>
-      <div className="cfw-options center-item">
-        <span onClick={() => props.removeTask(props.item.id)}>
-          <MdDelete/>
-        </span>
-        <span onClick={() => props.completeTask(props.item)}>
-          {props.item.completed ? <MdCheckBox/> : <MdCheckBoxOutlineBlank/>}
-        </span>
-      </div>
-    </div>
     )
+  }
 }
 
 Item.propTypes = {
@@ -119,7 +181,7 @@ class TodoList extends Component {
               </div>
             }
             {newList.length 
-            ? <ItemList onDragEnd={this.props.onDragEnd} list={newList} removeTask={onRemoveTask} completeTask={onCompleteTask}/>
+            ? <ItemList list={newList} removeTask={onRemoveTask} completeTask={onCompleteTask}/>
             : <EmptyListMessage/>}
             
           </div>

@@ -12,35 +12,39 @@ import MdCheckBox from 'react-icons/lib/md/check-box'
 import MdCheckBoxOutlineBlank from 'react-icons/lib/md/check-box-outline-blank'
 import MdFormatListBulleted from 'react-icons/lib/md/format-list-bulleted'
 
-const styles = {
-  modal: {
-    overlay: {
-      position: "fixed",
-      top: "0px",
-      left: "0px",
-      right: "0px",
-      bottom: "0px",
-      backgroundColor: "rgba(133, 130, 130, 0.753)"
-    },
-    content: {
-      position: "absolute",
-      top: "40px",
-      left: "200px",
-      right: "200px",
-      bottom: "40px",
-      border: "1px solid rgb(204, 204, 204)",
-      background: "rgb(255, 255, 255)",
-      overflow: "auto",
-      borderRadius: "4px",
-      outline: "none",
-      padding: "20px",
-      boxShadow: "0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.12)",
-      minWidth: "500px"
-    }
-  }
+function Item(props) {
+    return (
+      <div className="cflex-wrap">
+        <div className="cfw-author center-item">
+            {props.item.title[0].toUpperCase()}
+        </div>
+        <div className="cfw-content cflex-column">
+          <div className={props.item.completed ? "checked" : ""}>{props.item.title}</div>
+          <small>{props.item.creationDate}</small>
+        </div>
+        <div className="cfw-options center-item">
+          <span onClick={() => props.openModal(props.item)}>
+            <MdFormatListBulleted/>
+          </span>
+          <span onClick={() => props.removeTask(props.item.id)}>
+            <MdDelete/>
+          </span>
+          <span onClick={() => props.completeTask(props.item)}>
+            {props.item.completed ? <MdCheckBox/> : <MdCheckBoxOutlineBlank/>}
+          </span>
+        </div>
+      </div>
+    )
 }
 
-class Item extends Component{
+Item.propTypes = {
+  item: PropTypes.object.isRequired,
+  removeTask: PropTypes.func.isRequired,
+  completeTask: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired
+}
+
+class ItemList extends Component {
   state = {
     isModalOpen : false,
     itemInView: null
@@ -62,55 +66,33 @@ class Item extends Component{
 
   render(){
     return (
-      <div className="cflex-wrap">
-        <div className="cfw-author center-item">
-            {this.props.item.title[0].toUpperCase()}
-        </div>
-        <div className="cfw-content cflex-column">
-          <div className={this.props.item.completed ? "checked" : ""}>{this.props.item.title}</div>
-          <small>{this.props.item.creationDate}</small>
-        </div>
-        <Modal 
-          style={styles.modal}
-          isOpen={this.state.isModalOpen} 
-          onRequestClose={this.closeModal}
-          contentLabel='Modal'
-          >
-          Hola
+      <div>
+          <ul className="list">
+          {this.props.list.map((item, index) => (  
+            <li className="item-list" key={item.id}>
+              <Item 
+                item={item} 
+                removeTask={this.props.removeTask} 
+                completeTask={this.props.completeTask}
+                openModal={this.openModal}/>
+            </li>
+          ))}
+          </ul>
+          <Modal 
+            className="modal"
+            overlayClassName="overlay"
+            isOpen={this.state.isModalOpen} 
+            onRequestClose={this.closeModal}
+            contentLabel='Modal'
+            ariaHideApp={false}>
+            <div>
+              <h2>Modal</h2>
+            </div>
         </Modal>
-        <div className="cfw-options center-item">
-          <span onClick={() => this.openModal(this.props.item)}>
-            <MdFormatListBulleted/>
-          </span>
-          <span onClick={() => this.props.removeTask(this.props.item.id)}>
-            <MdDelete/>
-          </span>
-          <span onClick={() => this.props.completeTask(this.props.item)}>
-            {this.props.item.completed ? <MdCheckBox/> : <MdCheckBoxOutlineBlank/>}
-          </span>
-        </div>
       </div>
     )
   }
-}
-
-Item.propTypes = {
-  item: PropTypes.object.isRequired,
-  removeTask: PropTypes.func.isRequired,
-  completeTask: PropTypes.func.isRequired
-}
-
-function ItemList(props) {
-  return (
-    <div>
-        <ul className="list">
-        {props.list.map((item, index) => (  
-          <li className="item-list" key={item.id}>
-            <Item item={item} removeTask={props.removeTask} completeTask={props.completeTask}/>  
-          </li>
-        ))}
-        </ul>
-    </div>)
+  
 }
 
 ItemList.propTypes = {

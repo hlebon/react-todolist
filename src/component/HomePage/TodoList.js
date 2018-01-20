@@ -4,13 +4,16 @@ import escapeRegExp from 'escape-string-regexp'
 import PropTypes from 'prop-types'
 import sortBy from 'sort-by'
 import Modal from 'react-modal'
-import MdAdd from 'react-icons/lib/md/add'
-import MdSearch from 'react-icons/lib/md/search'
-import MdDelete from 'react-icons/lib/md/delete'
-import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up'
-import MdCheckBox from 'react-icons/lib/md/check-box'
-import MdCheckBoxOutlineBlank from 'react-icons/lib/md/check-box-outline-blank'
-import MdFormatListBulleted from 'react-icons/lib/md/format-list-bulleted'
+import {
+  MdAdd,
+  MdSearch,
+  MdDelete,
+  MdKeyboardArrowUp,
+  MdCheckBox,
+  MdCheckBoxOutlineBlank,
+  MdFormatListBulleted
+} from 'react-icons/lib/md'
+
 
 function Item(props) {
     return (
@@ -65,6 +68,8 @@ class ItemList extends Component {
   }
 
   render(){
+    const { itemInView } = this.state;
+
     return (
       <div>
           <ul className="list">
@@ -78,17 +83,33 @@ class ItemList extends Component {
             </li>
           ))}
           </ul>
-          <Modal 
-            className="modal"
-            overlayClassName="overlay"
-            isOpen={this.state.isModalOpen} 
-            onRequestClose={this.closeModal}
-            contentLabel='Modal'
-            ariaHideApp={false}>
-            <div>
-              <h2>Modal</h2>
-            </div>
-        </Modal>
+          { itemInView && 
+            <Modal 
+              className="modal"
+              overlayClassName="overlay"
+              isOpen={this.state.isModalOpen} 
+              onRequestClose={this.closeModal}
+              contentLabel='Modal'
+              ariaHideApp={false}>
+              <div classNanem="detail">
+                <h2>Detail</h2>
+                <div>
+                  <div>
+                    <label>Task</label>
+                    <p>{itemInView.title}</p>
+                  </div>
+                  <div>
+                    <label>Description</label>
+                    <p>{itemInView.description}</p>
+                  </div>
+                  <div>
+                    <label>Creation Date</label>
+                    <p>{itemInView.creationDate}</p>
+                  </div>
+                </div>
+              </div>
+            </Modal>
+          }
       </div>
     )
   }

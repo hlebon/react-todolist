@@ -8,21 +8,21 @@ const Todo = [
     id: 1,
     title: "Hacer Super",
     description: "Comprar para el desayuno de mañana y el almuerzo",
-    creationDate: (new Date("2017-10-2")).toLocaleDateString(),
+    creationDate: (new Date("2017-10-2")).toDateString(),
     completed: false
   },
   {
     id: 2,
     title: "Pintar la casa",
     description: "LLamar para preguntar a que hora puedo pasar por la pintura",
-    creationDate: (new Date("2017-8-7")).toLocaleDateString(),
+    creationDate: (new Date("2017-8-7")).toDateString(),
     completed: true
   },
   {
     id: 3,
     title: "Estudiar para examen",
     description: "Estudiar los ultimos dos capitulos PMBOOK",
-    creationDate: (new Date("2017-11-3")).toLocaleDateString(),
+    creationDate: (new Date("2017-11-3")).toDateString(),
     completed: false
   }
 ]
@@ -48,7 +48,6 @@ class App extends Component{
 
   onDragEnd = (result) => {
     console.log(result)
-    // dropped outside the list
     if (!result.destination) {
       return;
     }

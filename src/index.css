@@ -5,6 +5,10 @@
   font-family: 'Faustina', serif;
 }
 
+small{
+  color: gray;
+}
+
 body {
   height: 90vh;
   background: #673AB7;
@@ -76,6 +80,8 @@ input[type=text], textarea{
 
 .checked{
   text-decoration: line-through;
+  text-decoration-color: crimson;
+  color: gray;
 }
 
 .cflex-wrap {

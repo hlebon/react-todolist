@@ -91,7 +91,7 @@ class ItemList extends Component {
               onRequestClose={this.closeModal}
               contentLabel='Modal'
               ariaHideApp={false}>
-              <div classNanem="detail">
+              <div className="detail">
                 <h2>Detail</h2>
                 <div>
                   <div>

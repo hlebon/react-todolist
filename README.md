@@ -1,5 +1,5 @@
 <h1>Todo List App</h1>
-<p>A Basic Todo List app written in react</p>
+<p>A Todo List app written in react</p>
 
 ## Table of Contents
 
@@ -9,7 +9,7 @@
 - [Something is missing?](#something-is-missing)
 
 ## About
-Contact project: It is a basic app written in react and react-dom
+React todo list: It is a basic app written in react and react-dom
 
 ## Installing
 Installing the app and dependencies:
